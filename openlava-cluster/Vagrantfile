@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.box = "centos6"
+  config.vm.box_url = "http://dl.dropbox.com/u/9227672/CentOS-6.0-x86_64-netboot-4.1.6.box"
+  config.vm.network :hostonly, "10.0.0.30"
+  config.vm.host_name = "lsf"
+  config.vm.share_folder "shared", "/shared", "../shared"
+  config.vm.provision :chef_solo do |chef|
+        chef.cookbooks_path = "../chef/cookbooks"
+        chef.roles_path = "../chef/roles"
+        chef.add_recipe "python"
+        chef.add_recipe "jip-users"
+        chef.add_recipe "openlava-standalone"
+  end
+end
