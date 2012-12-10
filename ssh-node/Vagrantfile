@@ -8,11 +8,13 @@ Vagrant::Config.run do |config|
   config.vm.network :hostonly, "10.0.0.50"
   ## config.vm.forward_port 80, 8080
   config.vm.share_folder "shared", "/shared", "../shared"
+  config.vm.share_folder "jip", "jip", "../../jip"
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "../chef/cookbooks"
     chef.roles_path = "../chef/roles"
     chef.add_recipe "apt"
     chef.add_recipe "python"
+    chef.add_recipe "java"
     chef.add_recipe "jip-users"
   end
 end
