@@ -26,6 +26,7 @@ Vagrant::Config.run do |config|
         chef.roles_path = "../chef/roles"
         chef.add_recipe "apt"
         chef.add_recipe "python"
+        chef.add_recipe "java"
         chef.add_recipe "jip-users"
         chef.add_recipe "slurm-mpi-cluster"
         chef.add_role "slurm-headnode"
